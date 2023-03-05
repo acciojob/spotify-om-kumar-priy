@@ -61,7 +61,7 @@ public class SpotifyRepository {
         if(artist1==null)
         {
             artist1=new Artist(artistName);
-            //artists.add(a);//......
+            artists.add(a);//......
 
 
             Album ab=new Album(title);
