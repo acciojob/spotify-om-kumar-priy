@@ -50,27 +50,25 @@ public class SpotifyRepository {
     }
 
     public Album createAlbum(String title, String artistName) {
-        int n=artists.size();
-        int f=0;
         Artist artist1 = null;
-        for(int i=0;i<n;i++)
-        {
-            if(artists.get(i).getName().equals(artistName))
-            { f=1; artist1 =artists.get(i);}
 
-
+        for(Artist artist:artists){
+            if(artist.getName()==artistName){
+                artist1=artist;
+                break;
+            }
         }
-        if(f==0)//creat artist
+        if(artist1==null)
         {
-            Artist a=new Artist(artistName);
+            artist1=new Artist(artistName);
             //artists.add(a);//......
 
 
-            Album ab=new Album(artistName);
+            Album ab=new Album(title);
             albums.add(ab);
             List<Album> lt = new ArrayList<>();
             lt.add(ab);
-            artistAlbumMap.put(a,lt);
+            artistAlbumMap.put(artist1,lt);
 
             return ab;
         }
