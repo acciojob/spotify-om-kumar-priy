@@ -336,34 +336,34 @@ public class SpotifyRepository {
 
     public String mostPopularArtist() {
         int n = 0;//no of like
-        Artist artist1=null;
+        Artist art=null;
 
         for(Artist artist:artists){
             if(artist.getLikes()>=n){
-                artist1=artist;
+                art=artist;
                 n = artist.getLikes();
             }
         }
-        if(artist1==null)
+        if(art==null)
             return null;
         else
-            return artist1.getName();
+            return art.getName();
     }
 
     public String mostPopularSong() {
         int max=0;
-        Song song = null;
+        Song s = null;
 
         for(Song song1:songLikeMap.keySet()){
             if(song1.getLikes()>=max){
-                song=song1;
+                s=song1;
                 max = song1.getLikes();
             }
         }
-        if(song==null)
+        if(s==null)
             return null;
         else
-            return song.getTitle();
+            return s.getTitle();
     }
 
 }
