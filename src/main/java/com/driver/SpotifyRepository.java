@@ -1,7 +1,7 @@
 package com.driver;
 
 import java.util.*;
-
+import com.sun.source.tree.NewArrayTree;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -337,34 +337,35 @@ public class SpotifyRepository {
     }
 
     public String mostPopularArtist() {
-        int n=artists.size();
-        String ans="";
-        int max=0;
-        for(int i=0;i<n;i++)
-        {
-         int p=artists.get(i).getLikes();
-         if(p>max)
-         {
-             max=p;
-             ans=artists.get(i).getName();
-         }
+        int n = 0;//no of like
+        Artist artist1=null;
+
+        for(Artist artist:artists){
+            if(artist.getLikes()>=n){
+                artist1=artist;
+                n = artist.getLikes();
+            }
         }
-        return  ans;
+        if(artist1==null)
+            return null;
+        else
+            return artist1.getName();
     }
 
     public String mostPopularSong() {
-        int n=songs.size();
-        String ans="";
         int max=0;
-        for(int i=0;i<n;i++)
-        {
-            int p=songs.get(i).getLikes();
-            if(p>max)
-            {
-                max=p;
-                ans=songs.get(i).getTitle();
+        Song song = null;
+
+        for(Song song1:songLikeMap.keySet()){
+            if(song1.getLikes()>=max){
+                song=song1;
+                max = song1.getLikes();
             }
         }
-        return  ans;
+        if(song==null)
+            return null;
+        else
+            return song.getTitle();
     }
+
 }
